@@ -1,0 +1,10 @@
+.idea/*
+
+package-lock.json
+
+build/
+dist
+node_modules
+.DS_Store
+
+target/
