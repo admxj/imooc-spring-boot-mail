@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class SpringbootApplication {
 
-
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
     }
