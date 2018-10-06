@@ -37,4 +37,17 @@ public class MailServiceTest {
 
         mailService.sendHtmlMail("admxj@126.com","这是一封HTML邮件",content);
     }
+
+    @Test
+    public void sendAttachmentsMail() throws MessagingException {
+        String filePath = "/Users/admxj/Documents/软件开发前景.docx";
+        String content = "<html>\n" +
+                "<body>\n" +
+                "<h3>hello world</h3>\n" +
+                "<h1>html</h1>\n" +
+                "<h1>附件传输</h1>\n" +
+                "<body>\n" +
+                "</html>\n";
+        mailService.sendAttachmentsMail("admxj@126.com","这是一封HTML邮件",content, filePath);
+    }
 }
