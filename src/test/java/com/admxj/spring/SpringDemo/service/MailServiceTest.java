@@ -5,7 +5,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
 
 import static org.junit.Assert.*;
@@ -19,6 +22,9 @@ public class MailServiceTest {
 
     @Autowired
     private MailService mailService;
+
+    @Resource
+    private TemplateEngine templateEngine;
 
     @Test
     public void sendSimpleMail() {
@@ -64,7 +70,16 @@ public class MailServiceTest {
                 "<body>\n" +
                 "</html>\n";
 
+        mailService.sendInlinkResourceMail("admxj@126.com","这是一封图片邮件",content, imgPath, rscId);
+    }
 
-        mailService.sendInlinkResourceMail("1136308698@qq.com","这是一封图片邮件",content, imgPath, rscId);
+    @Test
+    public void testTemplateMailTest() throws MessagingException {
+        Context context = new Context();
+        context.setVariable("id","0096");
+
+        String emailContent = templateEngine.process("emailTeplate", context);
+        mailService.sendHtmlMail("admxj@126.com","这是一封HTML邮件",emailContent);
+
     }
 }
