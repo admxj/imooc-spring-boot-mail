@@ -8,6 +8,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
@@ -60,7 +61,16 @@ public class MailService {
         mailSender.send(message);
     }
 
-    public void sendAttachmentsMail(String to, String subject, String contnet, String filePath) throws MessagingException {
+    /**
+     * 附件邮件
+     * @param to 接收者邮件
+     * @param subject 邮件主题
+     * @param contnet HTML内容
+     * @param filePath 附件路径
+     * @throws MessagingException
+     */
+    public void sendAttachmentsMail(String to, String subject, String contnet,
+                                    String filePath) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
 
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -72,6 +82,31 @@ public class MailService {
         FileSystemResource file = new FileSystemResource(new File(filePath));
         String fileName = file.getFilename();
         helper.addAttachment(fileName, file);
+
+        mailSender.send(message);
+    }
+
+    /**
+     * 图片邮件
+     * @param to 接收者邮件
+     * @param subject 邮件主题
+     * @param contnet HTML内容
+     * @param recPath 图片路径
+     * @param rscId 图片ID
+     * @throws MessagingException
+     */
+    public void sendInlinkResourceMail(String to, String subject, String contnet,
+                                       String recPath, String rscId) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(contnet, true);
+        helper.setFrom(from);
+
+        FileSystemResource res = new FileSystemResource(new File(recPath));
+        helper.addInline(rscId, res);
 
         mailSender.send(message);
     }

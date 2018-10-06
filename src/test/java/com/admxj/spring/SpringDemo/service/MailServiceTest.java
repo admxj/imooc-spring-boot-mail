@@ -50,4 +50,21 @@ public class MailServiceTest {
                 "</html>\n";
         mailService.sendAttachmentsMail("admxj@126.com","这是一封HTML邮件",content, filePath);
     }
+
+    @Test
+    public void sendInlinkResourceMail() throws MessagingException {
+        String imgPath = "/Users/admxj/Pictures/3380758924-59c327b3b12fd_huge256.png";
+        String rscId = "admxj001";
+        String content = "<html>\n" +
+                "<body>\n" +
+                "<h3>hello world</h3>\n" +
+                "<h1>html</h1>\n" +
+                "<h1>图片邮件</h1>\n" +
+                "<img src='cid:"+rscId+"'></img>" +
+                "<body>\n" +
+                "</html>\n";
+
+
+        mailService.sendInlinkResourceMail("1136308698@qq.com","这是一封图片邮件",content, imgPath, rscId);
+    }
 }
