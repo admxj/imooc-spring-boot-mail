@@ -61,14 +61,14 @@ public class MailServiceTest {
     public void sendInlinkResourceMail() throws MessagingException {
         String imgPath = "/Users/admxj/Pictures/3380758924-59c327b3b12fd_huge256.png";
         String rscId = "admxj001";
-        String content = "<html>\n" +
-                "<body>\n" +
-                "<h3>hello world</h3>\n" +
-                "<h1>html</h1>\n" +
-                "<h1>图片邮件</h1>\n" +
+        String content = "<html>" +
+                "<body>" +
+                "<h3>hello world</h3>" +
+                "<h1>html</h1>" +
+                "<h1>图片邮件</h1>" +
                 "<img src='cid:"+rscId+"'></img>" +
-                "<body>\n" +
-                "</html>\n";
+                "<body>" +
+                "</html>";
 
         mailService.sendInlinkResourceMail("admxj@126.com","这是一封图片邮件",content, imgPath, rscId);
     }
