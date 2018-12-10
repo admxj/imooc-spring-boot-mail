@@ -33,4 +33,13 @@ public class Resource {
     public void setLanguage(String language) {
         this.language = language;
     }
+
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "name='" + name + '\'' +
+                ", website='" + website + '\'' +
+                ", language='" + language + '\'' +
+                '}';
+    }
 }

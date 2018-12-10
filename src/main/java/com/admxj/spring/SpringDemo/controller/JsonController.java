@@ -1,25 +1,18 @@
 package com.admxj.spring.SpringDemo.controller;
 
+import com.admxj.spring.SpringDemo.entity.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-class Student{
-
-    private String name;
-
-    private Integer age;
-
-}
 
 @RestController
 public class JsonController {
 
     @PostMapping("/json")
-    public String json(@RequestBody Student student){
+    public String json(@RequestBody Resource resource){
 
-
-        return student.toString();
+        return resource.toString();
     }
 
 }
