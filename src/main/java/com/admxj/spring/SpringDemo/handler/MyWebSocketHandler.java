@@ -1,6 +1,7 @@
 package com.admxj.spring.SpringDemo.handler;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 
@@ -10,7 +11,7 @@ import java.util.Map;
 @Component
 public class MyWebSocketHandler implements WebSocketHandler {
 
-    private Logger logger = Logger.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static final ArrayList<WebSocketSession> userSocketSessionMap;
 
@@ -21,7 +22,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
 
     //建立连接后
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) throws Exception{
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         logger.info("建立连接");
         userSocketSessionMap.add(session);
     }
@@ -33,12 +34,12 @@ public class MyWebSocketHandler implements WebSocketHandler {
         Map<String, Object> attributes = session.getAttributes();
         String id = (String) attributes.get("id");
 
-        String msg=message.getPayload().toString();
+        String msg = message.getPayload().toString();
 
         for (WebSocketSession webSocketSession : userSocketSessionMap)
             webSocketSession.sendMessage(new TextMessage(msg));
 
-        logger.info("id: "+id+" 消息列表: " + msg);
+        logger.info("id: " + id + " 消息列表: " + msg);
     }
 
     //消息传输错误处理
