@@ -4,10 +4,10 @@ COPY . /code
 
 WORKDIR /code
 
-ARG envType
+ARG envType=dev
 
 RUN mvn clean package -P$envType
 
-COPY target/springboot.jar /springboot.jar
+COPY --from=builder target/springboot.jar /springboot.jar
 
 ENTRYPOINT ['java', '-jar', '/springboot.jar']
