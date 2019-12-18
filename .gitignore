@@ -11,13 +11,18 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 *.zip
 *.tar.gz
 *.rar
-target/
+target/springboot.jar.original
+target/classes
+target/generated-sources
+target/generated-test-sources
+target/maven-archiver
+#target/
 
 # Jetbrains Idea
 .idea/
