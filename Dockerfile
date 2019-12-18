@@ -8,6 +8,6 @@ ARG envType=dev
 
 RUN mvn clean package -P$envType
 
-COPY --from=builder target/springboot.jar /springboot.jar
+COPY --from=builder /code/target/springboot.jar /springboot.jar
 
 ENTRYPOINT ['java', '-jar', '/springboot.jar']
