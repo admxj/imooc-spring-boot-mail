@@ -4,7 +4,7 @@ COPY . /code
 
 WORKDIR /code
 
-ARG envType
+ARG envType=dev
 
 RUN mvn clean package -P$envType
 
@@ -12,4 +12,4 @@ FROM java:openjdk-8u40-jdk
 
 COPY --from=builder /code/target/springboot.jar /springboot.jar
 
-ENTRYPOINT ['java', '-jar', '/springboot.jar']
+ENTRYPOINT ["java", "-jar", "/springboot.jar"]
